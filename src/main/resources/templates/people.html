@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>List of people</title>
+</head>
+<body>
+    <div>
+        <p>List of people:</p>
+    </div>
+    <div>
+        <tr th:each="person : ${people}">
+            <div><td>Person <span  th:text="${person.id}"></span></td></div>
+            <div><td>First Name: <span  th:text="${person.firstName}"></span></td></div>
+            <div><td>Last Name: <span  th:text="${person.lastName}"></span></td></div>
+            <div><td>Phone Number: <span  th:text="${person.phoneNumber}"></span></td></div>
+            <div><td>Email: <span  th:text="${person.email}"></span></td></div>
+        </tr>  
+    </div>
+    <div>
+        <h1>Register new person</h1>
+        <form th:action="@{/save}" method="post" th:object="${person}">
+        <div>
+            <label>First Name:</label>
+            <input type="text" th:field="*{firstName}" maxlength="25" required>   </div>
+            
+            <div>
+            <label>Last Name:</label>
+            <input type="text" th:field="*{lastName}" maxlength="25" required></div>
+
+<div>
+            <label>Phone Number:</label>
+            <input type="text" th:field="*{phoneNumber}" maxlength="20" required></div>
+
+<div>
+            <label>Email:</label>
+            <input type="email" th:field="*{email}" maxlength="25" required></div>
+
+            <div><button type="submit">Create new person</button></div>
+        </form>
+    </div>
+</body>
+</html>
